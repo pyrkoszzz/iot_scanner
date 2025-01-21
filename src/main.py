@@ -1,7 +1,7 @@
-from src.modules.authentication import Authenticator
-from src.modules.input_module import InputHandler
-from src.modules.credential_source import CredentialManager
-from src.modules.ipv4_scanner import IPv4Scanner
+from modules.authentication import Authenticator
+from modules.input_module import InputHandler
+from modules.credential_source import CredentialManager
+from modules.ipv4_scanner import IPv4Scanner
 
 
 def main():
@@ -15,6 +15,7 @@ def main():
     open_ports = ipv4_scanner.scan(ip_ranges)
     vulnerable_devices = authenticator.authenticate(open_ports, credentials)
 
+    print(open_ports)
     print(vulnerable_devices)
 
 

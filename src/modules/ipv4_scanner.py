@@ -2,7 +2,7 @@ import socket
 
 
 class IPv4Scanner:
-    def __init__(self, timeout=2):
+    def __init__(self, timeout=10):
         self.timeout = timeout
 
     def scan(self, ip_ranges):
@@ -16,5 +16,5 @@ class IPv4Scanner:
         try:
             with socket.create_connection((ip, port), timeout=self.timeout):
                 return True
-        except:
+        except socket.error:
             return False
