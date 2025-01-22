@@ -8,7 +8,7 @@ class Authenticator:
         try:
             with telnetlib.Telnet(ip, port, timeout=timeout) as tn:
                 tn.write(b"echo $?\n")
-                response = tn.read_until(b"\n", timeout=timeout).decode('ascii')
+                response = tn.read_until(b"\n", timeout=timeout).decode("ascii")
                 if response.strip():
                     print(f"[+] Open Telnet detected on {ip}:{port}")
                     return ip, port
@@ -21,11 +21,11 @@ class Authenticator:
         try:
             with telnetlib.Telnet(ip, port, timeout=timeout) as tn:
                 tn.read_until(b"login: ", timeout=timeout)
-                tn.write(username.encode('ascii') + b"\n")
+                tn.write(username.encode("ascii") + b"\n")
                 tn.read_until(b"Password: ", timeout=timeout)
-                tn.write(password.encode('ascii') + b"\n")
+                tn.write(password.encode("ascii") + b"\n")
                 tn.write(b"echo $?\n")
-                response = tn.read_until(b"\n", timeout=timeout).decode('ascii')
+                response = tn.read_until(b"\n", timeout=timeout).decode("ascii")
                 if "0" in response.strip():
                     print(f"[+] Successful login on {ip} with {username}/{password}")
                     return ip, username, password
@@ -52,7 +52,9 @@ class Authenticator:
         successful_logins = []
         with ThreadPoolExecutor(max_threads) as executor:
             futures = {
-                executor.submit(self.attempt_telnet_auth, ip, port, username, password): (
+                executor.submit(
+                    self.attempt_telnet_auth, ip, port, username, password
+                ): (
                     ip,
                     username,
                     password,
