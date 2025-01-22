@@ -6,7 +6,7 @@ class CredentialManager:
         self.creds_directory = creds_directory
 
     def load_credentials(self):
-        credentials = []
+        credentials = [["", ""]]
         credentials += self._load_local_creds()
         return credentials
 

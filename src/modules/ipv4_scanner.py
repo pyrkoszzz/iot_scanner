@@ -9,16 +9,15 @@ class IPv4Scanner:
 
     def scan_ip(self, ip, ports):
         """Scans a single IP address on a list of ports."""
-        open_ports = []
         for port in ports:
             try:
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     s.settimeout(1)  # Set timeout to 1 second
                     s.connect((ip, port))
-                    open_ports.append(port)
+                    return ip, port
             except (socket.timeout, socket.error):
                 pass
-        return ip, open_ports
+        return None, None
 
     def scan_range(self, ip_range, ports, max_threads=100):
         """Scans a range of IP addresses for activity on a list of ports."""

@@ -13,10 +13,8 @@ def main():
     ip_ranges = input_handler.get_ip_ranges()
     credentials = credential_manager.load_credentials()
     open_ports = ipv4_scanner.scan_range(ip_ranges, [23, 2323])
+    open_telnet_devices = authenticator.telnet_open_scan(open_ports)
     vulnerable_devices = authenticator.telnet_auth_scan(open_ports, credentials)
-
-    print(open_ports)
-    print(vulnerable_devices)
 
 
 if __name__ == "__main__":
