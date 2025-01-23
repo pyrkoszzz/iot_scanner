@@ -1,34 +1,38 @@
-from modules.authentication import Authenticator
-from modules.input_module import InputHandler
+from modules.cli_parser import CLIParser
 from modules.credential_source import CredentialManager
-from modules.ipv4_scanner import IPv4Scanner
-from src.modules.shodan_client import ShodanClient
+from modules.handlers import handle_ip_scan, handle_telnet_open_scan, handle_telnet_auth_scan, handle_shodan_enrichment
+from modules.logging_service import logger
 
 
 def main():
-    input_handler = InputHandler()
+    parser = CLIParser.get_parser()
+    args = parser.parse_args()
+
     credential_manager = CredentialManager()
-    ipv4_scanner = IPv4Scanner()
-    authenticator = Authenticator()
-    shodan_client = ShodanClient()
 
-    ip_ranges = input_handler.get_ip_ranges()
-    credentials = credential_manager.load_credentials()
-    open_ports = ipv4_scanner.scan_range(ip_ranges, [23, 2323])
-    # open_telnet_devices = authenticator.telnet_open_scan(open_ports)
-    # vulnerable_devices = authenticator.telnet_auth_scan(open_ports, credentials)
+    ip_ranges = args.ip_range
+    credentials = None
+    open_ports = []
 
-    print("[!] Open Telnet Devices:")
-    for device in open_ports:
-        device_info = shodan_client.get_device_info(device)
+    if args.credentials:
+        credentials = credential_manager.load_credentials()
 
-        if device_info:
-            print("\n[Device Information]")
-            print(f"IP: {device_info.get('ip_str')}")
-            print(f"Organization: {device_info.get('org')}")
-            print(f"ISP: {device_info.get('isp')}")
-            print(f"OS: {device_info.get('os')}")
-            print("Open Ports:", device_info.get("ports", []))
+    if args.scan_ips:
+        open_ports = handle_ip_scan(ip_ranges, args.ports)
+
+    elif args.scan_telnet_open:
+        open_ports = handle_ip_scan(ip_ranges, args.ports)
+        handle_telnet_open_scan(open_ports)
+
+    elif args.scan_telnet_auth:
+        if not credentials:
+            logger.error("Credentials file is required for Telnet authentication scan.")
+            return
+        open_ports = handle_ip_scan(ip_ranges, args.ports)
+        handle_telnet_auth_scan(open_ports, credentials)
+
+    if args.shodan_enrichment and open_ports:
+        handle_shodan_enrichment(open_ports)
 
 
 if __name__ == "__main__":
