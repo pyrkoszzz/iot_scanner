@@ -39,7 +39,9 @@ def handle_telnet_open_scan(open_ports: Dict[str, int]) -> List[Tuple[str, int]]
     return open_telnet_devices
 
 
-def handle_telnet_auth_scan(open_ports: Dict[str, int], credentials: List[List[str]]) -> List[Tuple[str, str, str]]:
+def handle_telnet_auth_scan(
+    open_ports: Dict[str, int], credentials: List[List[str]]
+) -> List[Tuple[str, str, str]]:
     """
     Performs Telnet authentication scan to find vulnerable devices.
 

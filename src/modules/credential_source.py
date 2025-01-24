@@ -7,6 +7,7 @@ class CredentialManager:
     """
     A class to manage credentials for the IoT scanner.
     """
+
     def __init__(self, creds_directory="config/credentials"):
         self.creds_directory = creds_directory
 

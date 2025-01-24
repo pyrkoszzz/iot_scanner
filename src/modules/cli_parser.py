@@ -3,6 +3,7 @@ import argparse
 
 class CLIParser:
     """CLI argument parser for the network scanning tool."""
+
     @staticmethod
     def get_parser():
         """Returns the CLI argument parser."""

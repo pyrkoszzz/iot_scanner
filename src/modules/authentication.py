@@ -49,7 +49,7 @@ class Authenticator:
                         f"[+] Successful login on {ip} with {username}/{password}"
                     )
                     return ip, username, password
-        except Exception as e:
+        except Exception:
             pass
         return None
 

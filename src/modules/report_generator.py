@@ -3,7 +3,8 @@ from typing import Dict, Any
 
 
 class ReportGenerator:
-    """Class to generate a report of the devices found in the network scan """
+    """Class to generate a report of the devices found in the network scan"""
+
     def __init__(self, report_file="reports/scan_report.json"):
         self.report_file = report_file
 

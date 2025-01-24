@@ -1,7 +1,12 @@
-from modules.cli_parser import CLIParser
-from modules.credential_source import CredentialManager
-from modules.handlers import handle_ip_scan, handle_telnet_open_scan, handle_telnet_auth_scan, handle_shodan_enrichment
-from modules.logging_service import logger
+from src.modules.cli_parser import CLIParser
+from src.modules.credential_source import CredentialManager
+from src.modules.handlers import (
+    handle_ip_scan,
+    handle_telnet_open_scan,
+    handle_telnet_auth_scan,
+    handle_shodan_enrichment,
+)
+from src.modules.logging_service import logger
 
 
 def main():
