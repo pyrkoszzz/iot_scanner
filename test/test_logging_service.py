@@ -1,7 +1,7 @@
 import logging
 import unittest
 from unittest.mock import patch, MagicMock
-from src.modules.logging_service import LoggingService
+from src.iot_modules.logging_service import LoggingService
 
 
 class TestLoggingService(unittest.TestCase):

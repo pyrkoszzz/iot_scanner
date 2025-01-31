@@ -1,5 +1,5 @@
 import unittest
-from src.modules.cli_parser import CLIParser
+from src.iot_modules.cli_parser import CLIParser
 
 
 class TestCLIParser(unittest.TestCase):

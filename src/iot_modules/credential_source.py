@@ -1,6 +1,6 @@
 import csv
 
-from src.modules.logging_service import logger
+from src.iot_modules.logging_service import logger
 
 
 class CredentialManager:

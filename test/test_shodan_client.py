@@ -4,7 +4,7 @@ from unittest.mock import patch, MagicMock
 
 import shodan
 
-from src.modules.shodan_client import ShodanClient
+from src.iot_modules.shodan_client import ShodanClient
 
 logger = logging.getLogger("IoTScanner")
 

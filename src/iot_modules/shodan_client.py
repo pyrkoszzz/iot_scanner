@@ -3,7 +3,7 @@ from typing import Dict, Any
 
 import shodan
 
-from src.modules.logging_service import logger
+from src.iot_modules.logging_service import logger
 
 
 class ShodanClient:

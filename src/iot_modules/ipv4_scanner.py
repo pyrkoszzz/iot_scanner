@@ -3,10 +3,12 @@ import ipaddress
 from concurrent.futures import ThreadPoolExecutor
 from typing import List, Tuple
 
-from src.modules.logging_service import logger
+from src.iot_modules.logging_service import logger
 
 
 class IPv4Scanner:
+    """A class to scan IPv4 addresses for open ports."""
+
     def __init__(self):
         self.timeout = 1
         self.max_threads = 100
@@ -24,6 +26,7 @@ class IPv4Scanner:
         for port in ports:
             try:
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                    logger.debug(f"Scanning {ip}:{port}")
                     s.settimeout(self.timeout)
                     s.connect((ip, port))
                     return ip, port
@@ -31,8 +34,16 @@ class IPv4Scanner:
                 pass
         return None, None
 
-    def scan_range(self, ip_range: str, ports):
-        """Scans a range of IP addresses for activity on a list of ports."""
+    def scan_range(self, ip_range: str, ports: List[int]) -> dict:
+        """Scans a range of IP addresses for activity on a list of ports.
+
+        Args:
+            ip_range (str): The IP range to scan.
+            ports (list): A list of ports to scan.
+
+        Returns:
+            dict: A dictionary containing the IP addresses and open ports.
+        """
         results = {}
         with ThreadPoolExecutor(self.max_threads) as executor:
             futures = {
