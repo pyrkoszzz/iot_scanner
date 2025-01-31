@@ -6,7 +6,7 @@ import os
 class LoggingService:
     """
     A centralized logging service for the IoT scanner.
-    Provides logging utilities for various modules and handles
+    Provides logging utilities for various iot_modules and handles
     file rotation, formatting, and log level configuration.
     """
 

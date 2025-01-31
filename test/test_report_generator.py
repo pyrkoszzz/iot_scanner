@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch, mock_open
-from src.modules.report_generator import ReportGenerator
+from src.iot_modules.report_generator import ReportGenerator
 
 
 class TestReportGenerator(unittest.TestCase):

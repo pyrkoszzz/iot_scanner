@@ -48,4 +48,11 @@ class CLIParser:
             help="Enrich scan results with Shodan data.",
         )
 
+        parser.add_argument(
+            "--report-file",
+            type=str,
+            default="reports/scan_report.json",
+            help="Path to the report file (default: reports/scan_report.json).",
+        )
+
         return parser

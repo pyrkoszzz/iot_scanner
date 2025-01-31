@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch, mock_open
-from src.modules.credential_source import CredentialManager
+from src.iot_modules.credential_source import CredentialManager
 
 
 class TestCredentialManager(unittest.TestCase):

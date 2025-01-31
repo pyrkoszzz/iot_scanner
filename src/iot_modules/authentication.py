@@ -2,7 +2,7 @@ import telnetlib
 from concurrent.futures import ThreadPoolExecutor
 from typing import Tuple, Dict, List
 
-from src.modules.logging_service import logger
+from src.iot_modules.logging_service import logger
 
 
 class Authenticator:

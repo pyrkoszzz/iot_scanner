@@ -1,9 +1,9 @@
 from typing import Dict, Tuple, List
 
-from src.modules.authentication import Authenticator
-from src.modules.ipv4_scanner import IPv4Scanner
-from src.modules.logging_service import logger
-from src.modules.shodan_client import ShodanClient
+from src.iot_modules.authentication import Authenticator
+from src.iot_modules.ipv4_scanner import IPv4Scanner
+from src.iot_modules.logging_service import logger
+from src.iot_modules.shodan_client import ShodanClient
 
 
 def handle_ip_scan(ip_range: str, ports: int) -> Dict[str, int]:
